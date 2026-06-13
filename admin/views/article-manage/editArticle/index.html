@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hzz - 管理后台 - 首页</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* PC端侧边栏收起状态 */
+    @media (min-width: 640px) {
+      #aside.closed {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+
+  <!-- 引入wangEditor  -->
+  <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+  <style>
+    #content {
+      border: 1px solid #ccc;
+      z-index: 100;
+      /* 按需定义 */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #toolbar-container {
+      border-bottom: 1px solid #ccc;
+    }
+
+    #editor-container {
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <div class="flex flex-col h-screen">
+    <!-- 顶部导航（固定高度防止布局跳动）-->
+    <header class="h-16 bg-white shadow-sm">
+      <div id="topBar"></div>
+    </header>
+
+
+    <!-- 主内容区 -->
+    <div class="flex-1 flex overflow-hidden relative">
+
+      <!-- 遮罩层（抽屉打开时显示，不覆盖顶部导航）-->
+      <div id="drawer-overlay" class="fixed top-16 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+      <!-- 侧边栏抽屉（PC端默认展开，移动端默认隐藏）-->
+      <aside id="aside"
+        class="fixed top-16 left-0 h-[calc(100vh-4rem)] bg-gradient-to-b from-white to-gray-100 text-gray-800 min-w-[200px] z-50 transition-transform duration-300 -translate-x-full sm:translate-x-0 border-r border-gray-200">
+      </aside>
+
+      <!-- 内容区域 -->
+      <main class="flex-1 overflow-auto p-6 sm:ml-[200px]">
+        <div class="sm:px-12 min-w-[320px] mx-auto py-6 sm:py-10">
+          <!-- 面包屑导航 -->
+          <nav class="breadcrumb mb-6">
+            <ol class="flex items-center border-l-2 border-gray-400">
+              <li class="breadcrumb-item px-2">文章管理</li>/
+              <li class="breadcrumb-item px-2">编辑文章</li>
+            </ol>
+          </nav>
+          <section>
+            <!-- 添加文章 -->
+            <div id="tabArticleContent" class="tab-content">
+              <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6">
+                <form id="editArticleForm">
+                  <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">编辑文章</h2>
+                    <button type="submit" id="editArticleBtn"
+                      class="w-[100px] bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center">
+                      <span id="btnText">编辑文章</span>
+                      <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="space-y-6">
+                    <!-- 标题、分类、发布时间 -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <!-- 标题 -->
+                      <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">标题 <span
+                            class="text-red-500">*</span></label>
+                        <input type="text" id="title" name="title"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                          placeholder="请输入文章标题" required>
+                      </div>
+                      <!-- 分类 -->
+                      <div>
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-2">分类 <span
+                            class="text-red-500">*</span></label>
+                        <select id="category" name="category"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 bg-white"
+                          required>
+                          <option value="">请选择分类</option>
+                        </select>
+                      </div>
+                      <!-- 外部链接 -->
+                      <div>
+                        <label for="outLink" class="block text-sm font-medium text-gray-700 mb-2">外部链接</label>
+                        <input type="url" id="outLink" name="outLink"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                          placeholder="外部链接地址">
+                      </div>
+                      <!-- 发布时间 -->
+                      <div>
+                        <label for="publishTime" class="block text-sm font-medium text-gray-700 mb-2">发布时间</label>
+                        <input type="datetime-local" id="publishTime" name="publishTime"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                          >
+                      </div>
+                    </div>
+
+                    <!-- 排序和置顶 -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <!-- 作者 -->
+                      <div>
+                        <label for="author" class="block text-sm font-medium text-gray-700 mb-2">作者</label>
+                        <input type="text" id="author" name="author"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                          placeholder="作者署名">
+                      </div>
+                      <!-- 排序 -->
+                      <div>
+                        <label for="sortIndex" class="block text-sm font-medium text-gray-700 mb-2">排序索引</label>
+                        <input type="number" id="sortIndex" name="sortIndex" value="0" min="0"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                          placeholder="数值越大越靠前">
+                      </div>
+                      <!-- 是否置顶 -->
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">是否置顶</label>
+                        <div class="flex items-center gap-4 mt-3">
+                          <label class="inline-flex items-center cursor-pointer">
+                            <input type="radio" id="isTopNo" name="isTop" value="0" checked class="sr-only peer">
+                            <div
+                              class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                            <span class="ml-3 text-sm text-gray-600">不置顶</span>
+                          </label>
+                          <label class="inline-flex items-center cursor-pointer">
+                            <input type="radio" id="isTopYes" name="isTop" value="1" class="sr-only peer">
+                            <div
+                              class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                            <span class="ml-3 text-sm text-gray-600">置顶</span>
+                          </label>
+                        </div>
+                      </div>
+                      <!-- 是否显示 -->
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">是否显示</label>
+                        <div class="flex items-center gap-4 mt-3">
+                          <label class="inline-flex items-center cursor-pointer">
+                            <input type="radio" id="isShowNo" name="isShow" value="0" class="sr-only peer">
+                            <div
+                              class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                            <span class="ml-3 text-sm text-gray-600">不显示</span>
+                          </label>
+                          <label class="inline-flex items-center cursor-pointer">
+                            <input type="radio" id="isShowYes" name="isShow" value="1" checked class="sr-only peer">
+                            <div
+                              class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                            <span class="ml-3 text-sm text-gray-600">显示</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 封面图片 -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">文章封面 <span
+                          class="text-red-500">*</span></label>
+                      <div class="flex flex-wrap gap-4">
+                        <label for="coverfile" class="flex-shrink-0 cursor-pointer">
+                          <div
+                            class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors flex items-center gap-2">
+                            <span>文章缩略图</span>
+                            <i class="fas fa-upload"></i>
+                          </div>
+                        </label>
+                        <input type="file" id="coverfile" name="coverfile" accept="image/*" multiple class="hidden">
+                        <div class="flex-1 min-w-[200px]">
+                          <input type="text" id="coverUrl" name="coverUrl"
+                            class="w-full px-4 py-3 border-b border-gray-300 focus:border-blue-500 outline-none transition-colors bg-transparent"
+                            placeholder="多个链接用逗号分隔">
+                        </div>
+                      </div>
+                      <div id="coverPreviewWrapper" class="hidden mt-4">
+                        <div id="coverPreviewContainer" class="grid grid-cols-6 gap-2">
+                        </div>
+                      </div>
+                      <p class="text-xs text-gray-500 mt-2">支持 JPG、PNG、GIF 格式，建议尺寸：800 × 600，多个链接用逗号分隔</p>
+                    </div>
+
+                    <!-- 简介 -->
+                    <div>
+                      <label for="intro" class="block text-sm font-medium text-gray-700 mb-2">文章简介</label>
+                      <textarea id="intro" name="intro" rows="3"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 resize-none"
+                        placeholder="请输入文章简介（选填）"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      
+                      <!-- 拓展字段（预留功能） -->
+                      <div>
+                        <label for="arg1" class="block text-sm font-medium text-gray-700 mb-2">拓展字段1</label>
+                        <input type="text" id="arg1" name="arg1"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                         >
+                      </div>
+                      <div>
+                        <label for="arg2" class="block text-sm font-medium text-gray-700 mb-2">拓展字段2</label>
+                        <input type="text" id="arg2" name="arg2"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                         >
+                      </div>
+                      <div>
+                        <label for="arg3" class="block text-sm font-medium text-gray-700 mb-2">拓展字段3</label>
+                        <input type="text" id="arg3" name="arg3"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                         >
+                      </div>
+                      <!-- 标签 -->
+                      <div>
+                        <label for="labels" class="block text-sm font-medium text-gray-700 mb-2">标签</label>
+                        <input type="text" id="labels" name="labels"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                          placeholder="多个标签用逗号分隔，如：标签1,标签2">
+                      </div>
+                    </div>
+
+
+
+
+
+                    <!-- 文章内容 -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">内容</label>
+                      <div id="content"
+                        class="border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
+                        <div id="toolbar-container"><!-- 工具栏 --></div>
+                        <div id="editor-container"><!-- 编辑器 --></div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="./index.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!-- Hero Section - 内页简洁头部 -->
+<section id="heroComponent" class="relative w-full overflow-hidden" style="height: 240px;">
+  <!-- 背景（图片或纯色） -->
+  <div id="heroBackground" class="absolute inset-0 bg-[#4a6723]"></div>
+
+  <!-- 装饰层 -->
+  <div class="absolute inset-0">
+    <!-- 装饰圆 -->
+    <div class="absolute top-0 left-0 w-48 h-48 bg-[#f0f0e8]/8 rounded-full -translate-x-1/3 -translate-y-1/3"></div>
+    <div class="absolute bottom-0 right-0 w-72 h-72 bg-[#2c3a32]/10 rounded-full translate-x-1/4 translate-y-1/4"></div>
+    <!-- 网格装饰 -->
+    <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 40px 40px;"></div>
+  </div>
+
+  <!-- 内容容器 -->
+  <div class="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center justify-center h-full text-center">
+      <!-- 标题 -->
+      <h1 id="heroTitle" class="text-3xl md:text-4xl font-bold text-white mb-3">
+        页面标题
+      </h1>
+      
+      <!-- 副标题（可选） -->
+      <p id="heroSubtitle" class="text-base md:text-lg text-gray-200/90 max-w-2xl mx-auto hidden">
+        页面描述文字
+      </p>
+      
+      <!-- 面包屑导航 -->
+      <nav id="heroBreadcrumb" class="flex items-center gap-2 text-gray-200 mt-4">
+        <a href="/" class="hover:text-[#f0f0e8] transition-colors duration-300 flex items-center gap-1">
+          <i class="fas fa-home text-sm"></i>
+          <span class="hidden sm:inline">首页</span>
+        </a>
+        <span class="text-gray-400">/</span>
+        <span id="heroBreadcrumbText">当前页面</span>
+      </nav>
+    </div>
+  </div>
+</section>
+<script src="/web/components/hero/index.js"></script>

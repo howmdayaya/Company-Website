@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hzz - 管理后台 - 首页</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/web/views/index/index.css">
+
+</head>
+
+<body class="bg-theme">
+  <header class="bg-white shadow-sm">
+    <div id="topBar"></div>
+  </header>
+
+
+  <!-- 主内容区 -->
+  <main>
+    <!-- hero -->
+    <div id="hero" data-config='{"title":"联系我们","breadcrumb":"联系我们","subtitle":"探索我们的故事，了解我们的使命"}'></div>
+    
+    
+    <!-- 联系信息区域 -->
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- 电话 -->
+          <div class="contact-card bg-white rounded-xl shadow-md p-6 text-center group hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#4a6723] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-phone text-white text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-[#2c3a32] mb-2">咨询热线</h3>
+            <p class="text-[#4a6723] font-bold text-xl">400-888-8888</p>
+            <p class="text-gray-500 text-sm mt-1">全国免费服务热线</p>
+          </div>
+
+          <!-- 邮箱 -->
+          <div class="contact-card bg-white rounded-xl shadow-md p-6 text-center group hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#4a6723] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-envelope text-white text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-[#2c3a32] mb-2">电子邮箱</h3>
+            <p class="text-[#4a6723] font-medium">info@hzz.com</p>
+            <p class="text-gray-500 text-sm mt-1">欢迎来信咨询</p>
+          </div>
+
+          <!-- 地址 -->
+          <div class="contact-card bg-white rounded-xl shadow-md p-6 text-center group hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#4a6723] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-[#2c3a32] mb-2">公司地址</h3>
+            <p class="text-gray-600 text-sm">xxxxxxx</p>
+            <p class="text-gray-500 text-sm mt-1">xxxxxxxx</p>
+          </div>
+
+          <!-- 工作时间 -->
+          <div class="contact-card bg-white rounded-xl shadow-md p-6 text-center group hover:shadow-xl transition-shadow duration-300">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#4a6723] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-clock text-white text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-[#2c3a32] mb-2">工作时间</h3>
+            <p class="text-gray-600 text-sm">周一至周五 9:00-18:00</p>
+            <p class="text-gray-500 text-sm mt-1">节假日除外</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系表单和地图区域 -->
+    <section class="py-12 bg-[#f0f0e8]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- 联系表单 -->
+          <div class="bg-white rounded-xl shadow-md p-8">
+            <h3 class="text-2xl font-bold text-[#2c3a32] mb-6 flex items-center gap-3">
+              <i class="fas fa-pencil-alt text-[#4a6723]"></i>
+              在线留言
+            </h3>
+            <!-- 实例，没有提交地址 -->
+            <form id="contactForm" class="space-y-6">
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">姓名 *</label>
+                <input type="text" id="name" name="name" required
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4a6723] focus:ring-2 focus:ring-[#4a6723]/20 transition-all duration-300"
+                  placeholder="请输入您的姓名">
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-gray-700 font-medium mb-2">电话 *</label>
+                  <input type="tel" id="phone" name="phone" required
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4a6723] focus:ring-2 focus:ring-[#4a6723]/20 transition-all duration-300"
+                    placeholder="请输入联系电话">
+                </div>
+                <div>
+                  <label class="block text-gray-700 font-medium mb-2">邮箱</label>
+                  <input type="email" id="email" name="email"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4a6723] focus:ring-2 focus:ring-[#4a6723]/20 transition-all duration-300"
+                    placeholder="请输入电子邮箱">
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">留言内容 *</label>
+                <textarea id="message" name="message" rows="4" required
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4a6723] focus:ring-2 focus:ring-[#4a6723]/20 transition-all duration-300 resize-none"
+                  placeholder="请输入您的留言内容"></textarea>
+              </div>
+              <button type="submit"
+                class="w-full py-3 bg-[#4a6723] text-white font-medium rounded-lg hover:bg-[#3d541d] transition-colors duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-paper-plane"></i>
+                提交留言
+              </button>
+            </form>
+          </div>
+
+          <!-- 地图区域 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <h3 class="text-2xl font-bold text-[#2c3a32] mb-6 px-8 pt-8 flex items-center gap-3">
+              <i class="fas fa-map text-[#4a6723]"></i>
+              公司位置
+            </h3>
+            <div class="aspect-video px-8 pb-8">
+              <div class="w-full h-full rounded-lg flex items-center justify-center">
+                <div class="text-center">
+                  <img class="w-full h-full object-cover rounded-lg" src="http://localhost:5050/windows-xp-bliss-4k-lu-1920x1080.jpg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 合作伙伴 -->
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-2xl font-bold text-[#2c3a32] mb-8 text-center">合作伙伴</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div class="partner-card bg-white rounded-lg shadow-sm p-4 flex items-center justify-center h-24 hover:shadow-md transition-shadow duration-300">
+            <span class="text-gray-400 font-medium">合作伙伴1</span>
+          </div>
+          <div class="partner-card bg-white rounded-lg shadow-sm p-4 flex items-center justify-center h-24 hover:shadow-md transition-shadow duration-300">
+            <span class="text-gray-400 font-medium">合作伙伴2</span>
+          </div>
+          <div class="partner-card bg-white rounded-lg shadow-sm p-4 flex items-center justify-center h-24 hover:shadow-md transition-shadow duration-300">
+            <span class="text-gray-400 font-medium">合作伙伴3</span>
+          </div>
+          <div class="partner-card bg-white rounded-lg shadow-sm p-4 flex items-center justify-center h-24 hover:shadow-md transition-shadow duration-300">
+            <span class="text-gray-400 font-medium">合作伙伴4</span>
+          </div>
+          <div class="partner-card bg-white rounded-lg shadow-sm p-4 flex items-center justify-center h-24 hover:shadow-md transition-shadow duration-300">
+            <span class="text-gray-400 font-medium">合作伙伴5</span>
+          </div>
+          <div class="partner-card bg-white rounded-lg shadow-sm p-4 flex items-center justify-center h-24 hover:shadow-md transition-shadow duration-300">
+            <span class="text-gray-400 font-medium">合作伙伴6</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div id="footer"></div>
+  </footer>
+
+  <script src="./index.js" type="module"></script>
+</body>
+
+</html>

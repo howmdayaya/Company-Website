@@ -1,0 +1,115 @@
+
+<link rel="stylesheet" href="/web/components/topBar/index.css">
+
+<!-- 现代化 Header -->
+<header class="fixed top-0 left-0 right-0 z-[1000] backdrop-blur-md shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-[80px] sm:h-[110px]">
+
+      <!-- Logo 区域 -->
+      <div class="flex-shrink-0">
+        <a href="/web/views/index/index.html" class="flex items-center space-x-2 group">
+          <img src="http://localhost:5050/exported_image.svg" alt="HZZ Logo">
+          <h1 class="text-[0px] font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+            HZZ
+          </h1>
+        </a>
+      </div>
+
+      <!-- 桌面端导航菜单 -->
+      <nav class="nav-pc hidden md:flex items-center space-x-1">
+        <ul class=" flex items-center space-x-1">
+          <li>
+            <a id="nav-home" href="/web/views/index/index.html"
+              class="relative block leading-[110px] px-4 hover:text-[#2c3a32]  transition-all duration-200 font-medium">
+              首页
+            </a>
+          </li>
+          <li>
+            <a id="nav-products" href="/web/views/products/index.html"
+              class="relative block leading-[110px] px-4 hover:text-[#2c3a32]  transition-all duration-200 font-medium">
+              产品中心
+            </a>
+          </li>
+          <li>
+            <a id="nav-about" href="/web/views/about/index.html"
+              class="relative block leading-[110px] px-4 hover:text-[#2c3a32]  transition-all duration-200 font-medium">
+              关于我们
+            </a>
+          </li>
+          <li>
+              <a id="nav-news" href="/web/views/news/index.html"
+              class="relative block leading-[110px] px-4 hover:text-[#2c3a32]  transition-all duration-200 font-medium">
+                新闻资讯
+              </a>
+          </li>
+          <li>
+            <a id="nav-contact" href="/web/views/contact/index.html"
+              class="relative block leading-[110px] px-4 hover:text-[#2c3a32]  transition-all duration-200 font-medium">
+              联系我们
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 移动端菜单按钮 -->
+      <button id="mobileMenuBtn"
+        class="md:hidden p-2  transition-all duration-200 hover:text-primary text-primary">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" class="hidden md:hidden pb-4">
+      <nav class="flex flex-col space-y-2">
+        <ul>
+          <li>
+            <a href="/"
+              class="px-4 py-3 hover:text-primary  transition-all duration-200 font-medium">
+              首页
+            </a>
+          </li>
+          <li>
+            <a href="/productlist.html"
+              class="px-4 py-3 hover:text-primary  transition-all duration-200 font-medium">
+              产品中心
+            </a>
+          </li>
+          <li>
+            <a href="/about.html"
+              class="px-4 py-3 hover:text-primary  transition-all duration-200 font-medium">
+              关于我们
+            </a>
+          </li>
+          <li>
+            <a href="/qgdt.html"
+              class="px-4 py-3 hover:text-primary  transition-all duration-200 font-medium">
+              新闻资讯
+            </a>
+          </li>
+          <li>
+            <a href="/lxwm.html"
+              class="px-4 py-3 hover:text-primary  transition-all duration-200 font-medium">
+              联系我们
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- 占位符，防止内容被固定header遮挡 -->
+<div class="h-[80px] sm:h-[110px]"></div>
+
+<script>
+  // 移动端菜单切换
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>

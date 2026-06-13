@@ -1,0 +1,85 @@
+/* 放青松主题色变量 */
+:root {
+  --color-primary: #518463;
+  --color-primary-light: #6a9d7e;
+  --color-primary-dark: #3c6b4d;
+  --color-bg: #ffffff;
+  --color-text: #2c3a32;
+  --color-text-light: #5a6b5f;
+}
+
+/* 基础样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全局字体设置 - 统一使用 Arial */
+body,
+body * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* 主题色文字类 */
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+/* 主题色背景类 */
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-theme {
+  background-color: var(--color-bg) !important;
+}
+
+/* 悬停效果 */
+.hover-primary:hover {
+  color: var(--color-primary) !important;
+  background-color: rgba(81, 132, 99, 0.1) !important;
+}
+
+/* hover:text-primary 悬停文字变主题色 */
+.hover\:text-primary:hover {
+  color: var(--color-primary) !important;
+}
+
+/* hover:text-primary-500 悬停文字变主题色 */
+.hover\:text-primary-500:hover {
+  color: var(--color-primary) !important;
+}
+
+/* 桌面端导航菜单下划线效果 */
+.nav-pc > ul > li > a:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+/* 导航激活状态 */
+.nav-pc > ul > li > a.active {
+  color: var(--color-primary) !important;
+}
+
+.nav-pc > ul > li > a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--color-primary);
+}
+
+/* 移动端导航激活状态 */
+#mobileMenu a.active {
+  color: var(--color-primary) !important;
+  background-color: rgba(81, 132, 99, 0.1);
+}

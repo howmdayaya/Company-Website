@@ -1,0 +1,7 @@
+{
+  "name": "hzz_web01",
+  "version": "1.0.0",
+  "scripts": {
+    "serve:json": "json-server --watch db/db.json --port 5050 --static db/public"
+  }
+}

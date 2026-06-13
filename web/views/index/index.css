@@ -1,0 +1,36 @@
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tab-panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.tab-panel.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.article-tab-panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.article-tab-panel.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}

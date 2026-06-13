@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HZZ - 产品中心</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/web/views/index/index.css">
+</head>
+
+<body class="bg-theme">
+  <header class="bg-white shadow-sm">
+    <div id="topBar"></div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main>
+    <!-- hero -->
+    <div id="hero" data-config='{"title":"产品中心","breadcrumb":"产品","subtitle":"探索我们的故事，了解我们的使命"}'></div>
+
+    <!-- 产品列表区域 -->
+    <section class="py-12 ">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 这里由JS动态渲染 -->
+        <div id="products"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div id="footer"></div>
+  </footer>
+
+  <script src="./index.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="/web/components/banner/index.css" />
+
+<!-- Swiper -->
+<div class="banner-container relative overflow-hidden mb-32">
+  <!-- 动态背景装饰 -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#4a6723]/10 via-transparent to-[#2d4a15]/10"></div>
+  <div class="absolute top-20 left-10 w-64 h-64 bg-[#4a6723]/10 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-20 w-96 h-96 bg-[#6b8e23]/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+  
+  <div class="swiper mySwiper relative z-10">
+    <div class="swiper-wrapper">
+      <!-- 第一张 Banner -->
+      <div class="swiper-slide relative">
+        <!-- 背景图片 -->
+        <div class="absolute inset-0">
+          <img src="http://localhost:5050/windows-xp-bliss-4k-lu-1920x1080.jpg" alt="banner 01" class="w-full h-full object-cover">
+          <!-- 渐变遮罩 -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+        </div>
+        
+        <!-- 大标题背景文字 -->
+        <div class="title-opacity absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          Hzz Title
+        </div>
+        
+        <!-- 主要内容 -->
+        <div class="slide-content relative z-20 flex flex-col items-center justify-center h-full px-4">
+          <!-- 装饰线 -->
+          <div class="w-16 h-1 bg-[#4a6723] mb-6 rounded-full"></div>
+          <h2 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wider drop-shadow-lg">
+            主标题
+          </h2>
+          <p class="text-xl md:text-2xl text-white/90 mb-10 tracking-wide">
+            副标题
+          </p>
+          <a href="#" class="to-btn group inline-flex items-center gap-2 px-10 py-4 bg-white text-[#4a6723] font-semibold rounded-full transition-all duration-500 hover:bg-gradient-to-r hover:from-[#4a6723] hover:to-[#6b8e23] hover:text-white hover:shadow-2xl hover:scale-105">
+            Get Started
+            <svg t="1780641822538" class="icon transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4563" width="20" height="20">
+              <path d="M512 64C264.58 64 64 264.57 64 512s200.58 448 448 448 448-200.58 448-448S759.42 64 512 64z m149 470.7c-0.14 0.14-0.32 0.17-0.45 0.31L480 715.57a32 32 0 0 1-45.25-45.25L593.07 512 434.76 353.68A32 32 0 0 1 480 308.43L660.58 489c0.13 0.12 0.31 0.17 0.45 0.29a32.24 32.24 0 0 1 0 45.41z" fill="currentColor" p-id="4564"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 第二张 Banner -->
+      <div class="swiper-slide relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#4a6723] to-[#2d4a15]"></div>
+        <div class="slide-content relative z-20 flex flex-col items-center justify-center h-full px-4">
+          <div class="w-16 h-1 bg-white mb-6 rounded-full"></div>
+          <h2 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wider">
+            Title Banner 02
+          </h2>
+          <p class="text-xl md:text-2xl text-white/90 mb-10">
+            sub title
+          </p>
+          <a href="#" class="to-btn px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#4a6723] transition-all duration-300">
+            Get Started
+          </a>
+        </div>
+      </div>
+      
+      <!-- 第三张 Banner -->
+      <div class="swiper-slide relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#2d4a15] to-[#1a2f0a]"></div>
+        <div class="slide-content relative z-20 flex flex-col items-center justify-center h-full px-4">
+          <div class="w-16 h-1 bg-[#a8d46e] mb-6 rounded-full"></div>
+          <h2 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wider">
+            Title Banner 03
+          </h2>
+          <p class="text-xl md:text-2xl text-white/90 mb-10">
+            sub title
+          </p>
+          <a href="#" class="to-btn px-10 py-4 bg-[#a8d46e] text-[#2d4a15] font-semibold rounded-full hover:bg-white transition-all duration-300">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 自定义分页器 -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- 导航按钮 -->
+    <button class="swiper-button-next-custom">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+    <button class="swiper-button-prev-custom">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="/web/components/banner/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    // 自定义分页器
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true, 
+    },
+    navigation: {
+      nextEl: ".swiper-button-next-custom",
+      prevEl: ".swiper-button-prev-custom",
+    },
+    effect: "fade",//淡入淡出效果
+    fadeEffect: {
+      crossFade: true // 开启交叉淡入淡出
+    },
+    
+  });
+</script>
